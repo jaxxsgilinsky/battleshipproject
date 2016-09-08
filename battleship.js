@@ -3,6 +3,7 @@ var rows = 10;
 var cols = 10;
 var squareSize = 50;
 var letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",];
+var userInput = $("#myInputBox").val();
 
 // gets the container element
 var gameBoardContainer = document.getElementById("gameboard");
