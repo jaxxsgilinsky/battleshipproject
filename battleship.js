@@ -1,9 +1,7 @@
-// sets grid rows and columns and the size of each square
 var rows = 10;
 var cols = 10;
 var squareSize = 50;
-var letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",];
-var userInput = $("#myInputBox").val();
+
 
 // gets the container element
 var gameBoardContainer = document.getElementById("gameboard");
@@ -24,6 +22,8 @@ var letterConversion = {
 }
 
 // makes the grid columns and rows
+var letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
 for (i = 0; i < cols; i++) {
 	for (j = 0; j < rows; j++) {
 
@@ -35,10 +35,12 @@ for (i = 0; i < cols; i++) {
 		square.id = 's' + j + i;
 		square.className = "boardSquare";
 
-    // This is where your code for part 2 should go
-    var letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",];
-		square.textContent = letterArray[j] +=
-		square.textContent = i + 1;
+		// THIS IS WHERE YOU WILL ADD CODE FOR PART 1 TO ADD TEXT TO EACH SQUARE
+
+
+		square.textContent = letterArray[j] + (i+1);
+
+
 
 
 		// set each grid square's coordinates: multiples of the current row or column number
@@ -48,27 +50,36 @@ for (i = 0; i < cols; i++) {
 		// use CSS absolute positioning to place each grid square on the page
 		square.style.top = topPosition + 'px';
 		square.style.left = leftPosition + 'px';
-	}
-}
+  }
+ }
 
 // Hardcoded 2D array to indicate where the ships are placed
 var gameBoard = [
-				[0,0,0,1,1,1,1,0,0,0],
+				[0,0,0,1,1,0,1,0,0,0],
+				[0,0,0,0,0,0,0,0,1,0],
+				[0,0,0,1,0,0,0,0,0,0],
 				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
+				[0,0,0,1,0,0,0,0,0,0],
 				[1,0,0,0,0,0,1,1,1,1],
 				[1,0,0,0,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,0,0,0,0,0,0,0]
+				[1,0,0,1,0,0,0,1,0,0],
+				[1,0,0,1,0,0,0,1,0,0],
+				[1,0,0,0,0,0,0,0,1,0]
 				]
 
-function fireTorpedo() {
 
-	var userInput = $("#myInputBox").val();
-	var rowLetter = userInput.substring(0,1);
-  var column = userInput.substring(1,2);
-
+	function fireTorpedo() {
+						var userInput = $("#userInput").val();
+						console.log("userInput is " + userInput);
+						var rowBeforeConversion = userInput.substring(0,1);
+						var  column = userInput.substring(1,3) - 1;
+						row = letterConversion[rowBeforeConversion];
+					  var Userguess = gameBoard[row][column]
+					  var myDivString = "#s" + row + column;
+					  if(Userguess == 1) {
+					      $(myDivString).css("background-color", "red");
+						}
+						else {
+							$(myDivString).css("background-color", "grey");
+						}
 }
